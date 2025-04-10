@@ -1,0 +1,173 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000000;
+  overflow: hidden;
+  position: relative;
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #ffffff;
+  z-index: 10; /* Keeps main content above falling items */
+  text-align: center;
+  flex-wrap: wrap; /* Allows elements to wrap for smaller screens */
+  max-width: 100%;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.image-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  max-width: 100%;
+}
+
+.spinning-image {
+  width: 100%;
+  height: auto;
+  animation: spin 3s linear infinite;
+  object-fit: contain;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.salad-piece {
+  position: absolute;
+  top: -100px; /* Start above the viewport */
+  background-image: url("/kebabsallad.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%; /* Optional: Makes it circular */
+  pointer-events: none; /* Prevent interaction */
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(var(--rotation));
+    opacity: 0; /* Fade out as they fall */
+  }
+}
+
+/* Media Query for Larger Screens */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .image-container {
+    width: 500px;
+    height: 500px;
+  }
+
+  .content {
+    flex-wrap: nowrap;
+  }
+}
+
+/* Media Query for Medium Screens */
+@media (max-width: 767px) {
+  .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .text {
+    order: 1;
+  }
+
+  .image-container {
+    order: 0;
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .image-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .salad-piece {
+    width: 30px; /* Smaller salad pieces */
+    height: 30px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 320px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+  }
+
+  .image-container {
+    width: 150px;
+    height: 150px;
+  }
+}

@@ -1,0 +1,6 @@
+services:
+  kebabsallad:
+    image: kebabsallad:latest
+    ports:
+      - "6934:3000"
+    restart: unless-stopped
